@@ -1,5 +1,5 @@
 {
-  "name": "HealthVaultJSLib",
+  "name": "healthvaultlib",
   "version": "1.0.0",
   "description": "Javascript library for Microsoft Healthvault",
   "main": "index.js",
