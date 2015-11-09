@@ -1,5 +1,5 @@
 ﻿namespace HealthVaultLib
 {
-    var test;
+    var test:any;
 }
 export = HealthVaultLib

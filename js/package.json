@@ -24,5 +24,7 @@
     "url": "https://github.com/rmchndrng/healthvault-js-library/issues"
   },
   "homepage": "https://github.com/rmchndrng/healthvault-js-library#readme",
-  "dependencies": {}
+  "dependencies": {
+    "hashmap": "^2.0.4"
+  }
 }

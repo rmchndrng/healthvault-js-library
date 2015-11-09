@@ -26,13 +26,12 @@
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Health\ApplicationProvisioning\Provisioner.ts" />
     <TypeScriptCompile Include="Health\Connection\HealthServiceConnection.ts" />
+    <TypeScriptCompile Include="Health\HealthApplicationConfiguration.ts" />
     <TypeScriptCompile Include="index.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Health\" />
-    <Folder Include="Health\ApplicationProvisioning\" />
     <Folder Include="Health\Connection\" />
     <Folder Include="js\" />
     <Folder Include="js\Health\" />
@@ -50,7 +49,7 @@
     <TypeScriptTarget>ES5</TypeScriptTarget>
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
-    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptNoImplicitAny>True</TypeScriptNoImplicitAny>
     <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
     <TypeScriptOutFile>
     </TypeScriptOutFile>
