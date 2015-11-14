@@ -24,24 +24,27 @@
     <Content Include="js\package.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="tsd.json" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Health\Connection\HealthServiceConnection.ts" />
+    <TypeScriptCompile Include="Health\ConfigKeyConstants.ts" />
     <TypeScriptCompile Include="Health\HealthApplicationConfiguration.ts" />
-    <TypeScriptCompile Include="index.ts" />
+    <TypeScriptCompile Include="HealthVaultLib.ts" />
+    <TypeScriptCompile Include="Types\Guid.ts" />
+    <TypeScriptCompile Include="Types\String.ts" />
+    <TypeScriptCompile Include="Types\Uri.ts" />
+    <TypeScriptCompile Include="typings\hashmap\hashmap.d.ts" />
+    <TypeScriptCompile Include="typings\node\node.d.ts" />
+    <TypeScriptCompile Include="typings\tsd.d.ts" />
+    <TypeScriptCompile Include="Health\ConfigReader.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Health\" />
-    <Folder Include="Health\Connection\" />
     <Folder Include="js\" />
-    <Folder Include="js\Health\" />
-    <Folder Include="js\Health\ApplicationProvisioning\" />
-    <Folder Include="js\Health\Connection\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="js\Health\ApplicationProvisioning\Provisioner.js" />
-    <Compile Include="js\Health\Connection\HealthServiceConnection.js" />
-    <Compile Include="js\index.js" />
+    <Folder Include="Health\" />
+    <Folder Include="Types\" />
+    <Folder Include="typings\hashmap\" />
+    <Folder Include="typings\" />
+    <Folder Include="typings\node\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->
@@ -50,12 +53,12 @@
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
     <TypeScriptNoImplicitAny>True</TypeScriptNoImplicitAny>
-    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptRemoveComments>True</TypeScriptRemoveComments>
     <TypeScriptOutFile>
     </TypeScriptOutFile>
     <TypeScriptOutDir>js</TypeScriptOutDir>
-    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
-    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptGeneratesDeclarations>True</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>False</TypeScriptNoEmitOnError>
     <TypeScriptMapRoot />
     <TypeScriptSourceRoot />
     <TypeScriptSourceMap>False</TypeScriptSourceMap>

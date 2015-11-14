@@ -1,0 +1,4 @@
+﻿class ResponseData
+{
+}
+export = ResponseData;

@@ -2,7 +2,7 @@
   "name": "healthvaultlib",
   "version": "1.0.0",
   "description": "Javascript library for Microsoft Healthvault",
-  "main": "index.js",
+  "main": "HealthVaultLib.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/rmchndrng/healthvault-js-library#readme",
   "dependencies": {
-    "hashmap": "^2.0.4"
+    "hashmap": "^2.0.4",
+    "node-uuid": "^1.4.3"
   }
 }
