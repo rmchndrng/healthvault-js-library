@@ -9,6 +9,13 @@ class Validator
             throw new ArgumentError("Argument " + argumentName + "cannot be null.");
         }
     }
+    static ThrowArgumentErrorIf(argument: boolean, argumentName: string, message: string)
+    {
+        if (argument == true)
+        {
+            throw new ArgumentError("Argument " + argumentName + " - " + message);
+        }
+    }
     static ThrowArgumentOutOfRangeIf(argument: boolean, argumentName: string, message: string)
     {
         if (argument == true)

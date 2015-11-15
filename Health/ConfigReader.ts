@@ -1,7 +1,7 @@
 ﻿import Uri = require('../Types/Uri');
 import String = require('../Types/String');
 import Guid = require('../Types/Guid');
--class ConfigReader
+class ConfigReader
 {
     private _config: any;
     constructor(config: any)
@@ -46,6 +46,19 @@ import Guid = require('../Types/Guid');
     {
         var resultString: string = this.GetString(key);
         var result: Guid = new Guid(resultString);
+        return result;
+    }
+    GetInt(key: string, defaultValue: number)
+    {
+        var result: number = defaultValue;
+        var resultString: string = this.GetString(key);
+        if (resultString != null)
+        {
+            if (parseInt(resultString) != null)
+            {
+                result = parseInt(resultString);
+            }
+        }
         return result;
     }
 }

@@ -7,25 +7,16 @@ import Connection = require('./Connection');
 import RecordAccessor = require('./RecordAccessor');
 import Validator = require('./Validator');
 import ResponseData = require('./ResponseData');
-
-class Request
+import AuthenticatedConnection = require('./AuthenticatedConnection');
+import AuthenticatedSessionTokenExpiredError = require('../Errors/AuthenticatedSessionTokenExpiredError');
+import Credential = require('./Credential');
+class ServiceRequest
 {
     //TODO:Implement HealthServiceRequest
-    private _CorrelationIdContextKey: string = "WC_CorrelationId"
-    private _ResponseIdContextKey: string = "WC_ResponseId";
-
     private static _CorrelationId: Guid;
     private static _LastResponseId: Guid;
 
     private _RecordId: Guid;
-    /// <summary>
-    /// Gets or sets the record identifier.
-    /// </summary>
-    /// 
-    /// <returns>
-    /// A GUID representing the identifier.
-    /// </returns>
-    /// 
     get RecordId()
     {
         return this._RecordId;
@@ -36,14 +27,6 @@ class Request
     }
 
     private _CultureCode: string;
-    /// <summary>
-    /// Gets or sets the culture-code for the request.
-    /// </summary>
-    /// 
-    /// <returns>
-    /// A string representing the culture-code.
-    /// </returns>
-    /// 
     get CultureCode()
     {
         return this._CultureCode;
@@ -52,23 +35,12 @@ class Request
     {
         this._CultureCode = value;
     }
-    
-    // <summary>
-    /// Constructs the version identifier for this version of the HealthVault JS APIs.
-    /// </summary>
-    private static _Version: string = Request._ConstructVersionString();
 
-    /// <summary>
-    /// Gets a string identifying this version of the HealthVault JS APIs.
-    /// </summary>
-    /// 
-    /// <returns>
-    /// A string representing the version.
-    /// </returns>
-    /// 
+    private static _Version: string = ServiceRequest._ConstructVersionString();
+
     get Version(): string
     {
-        return Request._Version;
+        return ServiceRequest._Version;
     }
 
     private static _ConstructVersionString()
@@ -88,14 +60,6 @@ class Request
     }
 
     private _parameters: string = String.Empty;
-    /// <summary>
-    /// Gets or sets the parameters for the method invocation.
-    /// The parameters are specified via XML for the particular method.
-    /// </summary>
-    /// 
-    /// <returns>
-    /// A string representing the parameters.
-    /// </returns>    
     get Parameters(): string
     {
         if (this._parameters == null)
@@ -110,18 +74,6 @@ class Request
     }
 
     private _TimeoutSeconds: number;
-    /// <summary>
-    /// Gets or sets the timeout for the request, in seconds.
-    /// </summary>
-    /// 
-    /// <returns>
-    /// An integer representing the timeout, in seconds.
-    /// </returns>
-    /// 
-    /// <exception cref="ArgumentOutOfRangeException">
-    /// The timeout value is set to less than 0.
-    /// </exception>
-    /// 
     get TimeoutSeconds(): number
     {
         return this._TimeoutSeconds;
@@ -133,14 +85,6 @@ class Request
     }
 
     private _ResponseData: ResponseData;
-    /// <summary>
-    /// Gets the response after Execute is called.
-    /// </summary>
-    /// 
-    /// <returns>
-    /// An instance of <see cref="ResponseData"/>.
-    /// </returns>
-    ///     
     get Response(): ResponseData
     {
         return this._ResponseData;
@@ -178,7 +122,28 @@ class Request
         return this._XmlRequestLength;
     }
 
+    get ImpersonatedPersonId(): Guid
+    {
+        return this._TargetPersonId;
+    }
+    set ImpersonatedPersonId(value: Guid)
+    {
+        this._TargetPersonId = value;
+    }
+    private _TargetPersonId: Guid = Guid.Empty;
+
     private _Connection: Connection;
+    get MethodName(): string
+    {
+        return this._MethodName;
+    }
+    private _MethodName: string;
+
+    get MethodVersion(): number
+    {
+        return this._MethodVersion;
+    }
+    private _MethodVersion: number;
 
     constructor(connection: Connection, methodName: string, methodVersion: number, recordAccessor?: RecordAccessor)
     {
@@ -191,9 +156,82 @@ class Request
         Validator.ThrowIfStringNullOrEmpty(methodName, "methodName");
 
         this._Connection = connection;
+        this._MethodName = methodName;
+        this._MethodVersion = methodVersion
 
+        if (connection instanceof AuthenticatedConnection)
+        {
+            this._TargetPersonId = connection.ImpersonatedPersonId
+        }
+
+        this._TimeoutSeconds = connection.RequestTimeoutSeconds;
+        this._MsgTimeToLive = connection.RequestTimeToLive;
+        this._CultureCode = connection.Culture.Name;
+        
         //TODO:Complete HealthServiceRequest
 
     }
+
+    get CorrelationId(): Guid
+    {
+        return ServiceRequest._CorrelationId;
+    }
+    set CorrelationId(correlationId: Guid)
+    {
+        ServiceRequest._CorrelationId = correlationId;
+    }
+
+    private static _SetLastResponseId(value: Guid)
+    {
+        ServiceRequest._LastResponseId = value;
+    }
+
+    static get LastResponseId(): Guid
+    {
+        return ServiceRequest._LastResponseId;
+    }
+
+    Execute(callBackAfterRequestExcection?: () => void): void
+    {
+        if (this._Connection.Credential != null)
+        {
+            this._Connection.Credential.AuthenticateIfRequired(this._Connection, this._Connection.ApplicationId,
+                this.ResumeRequestExcecution.bind(this, callBackAfterRequestExcection));
+        }
+        else
+        {
+            this.ResumeRequestExcecution(callBackAfterRequestExcection);
+        }
+    }
+
+    private ResumeRequestExcecution(callBackAfterRequestExcection?: () => void)
+    {
+        try
+        {
+            this._Execute(callBackAfterRequestExcection);
+        }
+        catch (e)
+        {
+            if (e instanceof AuthenticatedSessionTokenExpiredError)
+            {
+                if (this._Connection.Credential != null)
+                {
+                    this._Connection.Credential.ExpireAuthenticateionResult(this._Connection.ApplicationId);
+                    this._Connection.Credential.AuthenticateIfRequired(this._Connection, this._Connection.ApplicationId, this.ResumeRequestExcecution.bind(this, callBackAfterRequestExcection));
+                }
+                throw e;
+            }
+            throw e;
+        }
+    }
+
+    private _Execute(callBackAfterRequestExcection?: () => void)
+    {
+        console.log('Real execution of request');
+        if (callBackAfterRequestExcection != null)
+        {
+            callBackAfterRequestExcection();
+        }
+    }
 }
-export =Request;
+export =ServiceRequest;

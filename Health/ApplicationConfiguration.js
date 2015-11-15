@@ -7,19 +7,11 @@ var ApplicationConfiguration = (function () {
         this._HealthServiceUrl = null;
         this._ShellUrl = null;
         this._ApplicationId = null;
+        this._DefaultDefaultRequestTimeout = 30;
+        this._DefaultDefaultRequestTimeToLive = 1800;
         this._ConfigReader = new ConfigReader(hvConfig);
     }
     Object.defineProperty(ApplicationConfiguration.prototype, "HealthServiceUrl", {
-        /// <summary>
-        /// Gets the root URL for a default instance of the
-        /// HealthVault web-service.
-        /// </summary>
-        /// 
-        /// <remarks>
-        /// This property corresponds to the "HealthServiceUrl" configuration
-        /// value with "wildcat.ashx" removed.
-        /// </remarks>
-        /// 
         get: function () {
             if (this._HealthServiceUrl == null) {
                 this._HealthServiceUrl = this._ConfigReader.GetUrl(ConfigKeyConstants.HealthServiceUrl, true);
@@ -30,16 +22,6 @@ var ApplicationConfiguration = (function () {
         configurable: true
     });
     Object.defineProperty(ApplicationConfiguration.prototype, "HealthVaultMethodUrl", {
-        /// <summary>
-        /// Gets the HealthVault method request URL for
-        /// the configured default instance of the HealthVault web-service.
-        /// </summary>
-        /// 
-        /// <remarks>
-        /// This property corresponds to the "HealthServiceUrl" configuration
-        /// value.
-        /// </remarks>
-        ///
         get: function () {
             var newUri = this.HealthServiceUrl.AbsoluteUri;
             if (String.EndsWith(newUri, "/")) {
@@ -54,16 +36,6 @@ var ApplicationConfiguration = (function () {
         configurable: true
     });
     Object.defineProperty(ApplicationConfiguration.prototype, "HealthVaultShellUrl", {
-        /// <summary>
-        /// Gets the root URL for a default instance of the
-        /// HealthVault web-service.
-        /// </summary>
-        /// 
-        /// <remarks>
-        /// This property corresponds to the "HealthServiceUrl" configuration
-        /// value with "wildcat.ashx" removed.
-        /// </remarks>
-        /// 
         get: function () {
             if (this._ShellUrl == null) {
                 this._ShellUrl = this._ConfigReader.GetUrl(ConfigKeyConstants.ShellUrl, true);
@@ -74,20 +46,31 @@ var ApplicationConfiguration = (function () {
         configurable: true
     });
     Object.defineProperty(ApplicationConfiguration.prototype, "ApplicationId", {
-        /// <summary>
-        /// Gets the application's unique identifier.
-        /// </summary>
-        /// 
-        /// <remarks>
-        /// This property corresponds to the "ApplicationId" configuration
-        /// value.
-        /// </remarks>
-        /// 
         get: function () {
             if (this._ApplicationId == null) {
                 this._ApplicationId = this._ConfigReader.GetGuid(ConfigKeyConstants.ApplicationId);
             }
             return this._ApplicationId;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ApplicationConfiguration.prototype, "DefaultRequestTimeout", {
+        get: function () {
+            if (this._DefaultRequestTimeout == null) {
+                this._DefaultRequestTimeout = this._ConfigReader.GetInt(ConfigKeyConstants.DefaultRequestTimeout, this._DefaultDefaultRequestTimeout);
+            }
+            return this._DefaultRequestTimeout;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ApplicationConfiguration.prototype, "DefaultRequestTimeToLive", {
+        get: function () {
+            if (this._DefaultRequestTimeToLive == null) {
+                this._DefaultRequestTimeToLive = this._ConfigReader.GetInt(ConfigKeyConstants.DefaultRequestTimeToLive, this._DefaultDefaultRequestTimeToLive);
+            }
+            return this._DefaultRequestTimeToLive;
         },
         enumerable: true,
         configurable: true

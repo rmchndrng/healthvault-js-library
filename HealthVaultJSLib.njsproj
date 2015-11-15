@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{925b3814-7668-476b-a27d-3d5948f315a0}</ProjectGuid>
     <ProjectHome />
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
     <StartupFile>
     </StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
@@ -27,10 +27,29 @@
     <Content Include="tsd.json" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Errors\ArgumentError.ts" />
+    <TypeScriptCompile Include="Errors\AuthenticatedSessionTokenExpiredError.ts" />
+    <TypeScriptCompile Include="Health\AnonymousConnection.ts" />
+    <TypeScriptCompile Include="Health\ApplicationConnection.ts" />
+    <TypeScriptCompile Include="Health\ApplicationRecordAuthorizationAction.ts" />
+    <TypeScriptCompile Include="Health\AuthenticatedConnection.ts" />
     <TypeScriptCompile Include="Health\ConfigKeyConstants.ts" />
-    <TypeScriptCompile Include="Health\HealthApplicationConfiguration.ts" />
+    <TypeScriptCompile Include="Health\Connection.ts" />
+    <TypeScriptCompile Include="Health\ApplicationConfiguration.ts" />
     <TypeScriptCompile Include="HealthVaultLib.ts" />
+    <TypeScriptCompile Include="Health\CreateAuthenticationTokenResult.ts" />
+    <TypeScriptCompile Include="Health\Credential.ts" />
+    <TypeScriptCompile Include="Health\Platform.ts" />
+    <TypeScriptCompile Include="Health\RecordAccessor.ts" />
+    <TypeScriptCompile Include="Health\ServiceRequest.ts" />
+    <TypeScriptCompile Include="Health\ResponseData.ts" />
+    <TypeScriptCompile Include="Health\ServiceInfo.ts" />
+    <TypeScriptCompile Include="Health\AuthenticationTokenCreationStatus.ts" />
+    <TypeScriptCompile Include="Health\Validator.ts" />
+    <TypeScriptCompile Include="Logger.ts" />
+    <TypeScriptCompile Include="Types\CultureInfo.ts" />
     <TypeScriptCompile Include="Types\Guid.ts" />
+    <TypeScriptCompile Include="Types\IWebProxy.ts" />
     <TypeScriptCompile Include="Types\String.ts" />
     <TypeScriptCompile Include="Types\Uri.ts" />
     <TypeScriptCompile Include="typings\hashmap\hashmap.d.ts" />
@@ -41,6 +60,7 @@
   <ItemGroup>
     <Folder Include="js\" />
     <Folder Include="Health\" />
+    <Folder Include="Errors\" />
     <Folder Include="Types\" />
     <Folder Include="typings\hashmap\" />
     <Folder Include="typings\" />

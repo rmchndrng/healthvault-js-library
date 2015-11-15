@@ -10,16 +10,11 @@ class ApplicationConfiguration
     private _HealthServiceUrl: Uri = null;
     private _ShellUrl: Uri = null;
     private _ApplicationId: Guid = null;
-    /// <summary>
-    /// Gets the root URL for a default instance of the
-    /// HealthVault web-service.
-    /// </summary>
-    /// 
-    /// <remarks>
-    /// This property corresponds to the "HealthServiceUrl" configuration
-    /// value with "wildcat.ashx" removed.
-    /// </remarks>
-    /// 
+    private _DefaultRequestTimeout: number;
+    private _DefaultDefaultRequestTimeout: number = 30;
+    private _DefaultRequestTimeToLive: number;
+    private _DefaultDefaultRequestTimeToLive: number = 1800;
+
     get HealthServiceUrl(): Uri
     {
         if (this._HealthServiceUrl == null)
@@ -30,16 +25,6 @@ class ApplicationConfiguration
         return this._HealthServiceUrl;
     }
 
-    /// <summary>
-    /// Gets the HealthVault method request URL for
-    /// the configured default instance of the HealthVault web-service.
-    /// </summary>
-    /// 
-    /// <remarks>
-    /// This property corresponds to the "HealthServiceUrl" configuration
-    /// value.
-    /// </remarks>
-    ///
     get HealthVaultMethodUrl(): Uri
     {
         var newUri: string = this.HealthServiceUrl.AbsoluteUri;
@@ -54,16 +39,6 @@ class ApplicationConfiguration
         return new Uri(newUri);
     }
 
-    /// <summary>
-    /// Gets the root URL for a default instance of the
-    /// HealthVault web-service.
-    /// </summary>
-    /// 
-    /// <remarks>
-    /// This property corresponds to the "HealthServiceUrl" configuration
-    /// value with "wildcat.ashx" removed.
-    /// </remarks>
-    /// 
     get HealthVaultShellUrl(): Uri
     {
         if (this._ShellUrl == null)
@@ -73,15 +48,6 @@ class ApplicationConfiguration
         return this._ShellUrl;
     }
 
-    /// <summary>
-    /// Gets the application's unique identifier.
-    /// </summary>
-    /// 
-    /// <remarks>
-    /// This property corresponds to the "ApplicationId" configuration
-    /// value.
-    /// </remarks>
-    /// 
     get ApplicationId(): Guid
     {
         if (this._ApplicationId == null)
@@ -89,6 +55,24 @@ class ApplicationConfiguration
             this._ApplicationId = this._ConfigReader.GetGuid(ConfigKeyConstants.ApplicationId);
         }
         return this._ApplicationId;
+    }
+
+    get DefaultRequestTimeout(): number
+    {
+        if (this._DefaultRequestTimeout == null)
+        {
+            this._DefaultRequestTimeout = this._ConfigReader.GetInt(ConfigKeyConstants.DefaultRequestTimeout, this._DefaultDefaultRequestTimeout);
+        }
+        return this._DefaultRequestTimeout;
+    }
+
+    get DefaultRequestTimeToLive(): number
+    {
+        if (this._DefaultRequestTimeToLive == null)
+        {
+            this._DefaultRequestTimeToLive = this._ConfigReader.GetInt(ConfigKeyConstants.DefaultRequestTimeToLive, this._DefaultDefaultRequestTimeToLive);
+        }
+        return this._DefaultRequestTimeToLive;
     }
 
     constructor(hvConfig: any)

@@ -1,12 +1,12 @@
 var Validator = require('./Validator');
-var Request = require('./Request');
+var ServiceRequest = require('./ServiceRequest');
 var Platform = (function () {
     function Platform() {
     }
     //TODO:Implement HealthVaultPlatform
     Platform.GetServiceDefinition = function (connection, parameters) {
         Validator.ThrowIfArgumentNull(connection, "connection");
-        var request = new Request(connection, "GetServiceDefinition", 2);
+        var request = new ServiceRequest(connection, "GetServiceDefinition", 2);
         //TODO:Complete GetServiceDefinition
     };
     return Platform;

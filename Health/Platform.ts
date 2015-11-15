@@ -1,7 +1,7 @@
 ﻿import Connection = require('./Connection');
 import ServiceInfo = require('./ServiceInfo');
 import Validator = require('./Validator');
-import Request = require('./Request');
+import ServiceRequest = require('./ServiceRequest');
 class Platform
 {
     //TODO:Implement HealthVaultPlatform
@@ -9,7 +9,7 @@ class Platform
     static GetServiceDefinition(connection:Connection,parameters?:string):ServiceInfo
     {
         Validator.ThrowIfArgumentNull(connection, "connection");
-        var request: Request = new Request(connection, "GetServiceDefinition", 2);
+        var request: ServiceRequest = new ServiceRequest(connection, "GetServiceDefinition", 2);
         //TODO:Complete GetServiceDefinition
     }
 }
