@@ -1,4 +1,0 @@
-﻿class ResponseData
-{
-}
-export = ResponseData;
