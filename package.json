@@ -1,6 +1,6 @@
 {
-  "name": "healthvaultjslib",
-  "version": "1.0.0",
+  "name": "hvjslib",
+  "version": "1.0.1",
   "description": "Javascript library for Microsoft Healthvault",
   "main": "index.js",
   "scripts": {
