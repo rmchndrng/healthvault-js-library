@@ -1,0 +1,109 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Users\\Ramachandran\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish' ]
+2 info using npm@3.10.6
+3 info using node@v5.10.1
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: 'e:\\TrainingLab\\Github\\healthvault-js-library',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory C:\Users\Ramachandran\AppData\Roaming\npm-cache\healthvaultjslib\1.0.0\package.tgz not in flight; packing
+9 verbose correctMkdir C:\Users\Ramachandran\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+10 info lifecycle healthvaultjslib@1.0.0~prepublish: healthvaultjslib@1.0.0
+11 silly lifecycle healthvaultjslib@1.0.0~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ 'C:\\Users\\Ramachandran\\AppData\\Roaming\\npm-cache\\healthvaultjslib\\1.0.0\\package.tgz',
+12 verbose tar pack   'e:\\TrainingLab\\Github\\healthvault-js-library' ]
+13 verbose tarball C:\Users\Ramachandran\AppData\Roaming\npm-cache\healthvaultjslib\1.0.0\package.tgz
+14 verbose folder e:\TrainingLab\Github\healthvault-js-library
+15 verbose addLocalTarball adding from inside cache C:\Users\Ramachandran\AppData\Roaming\npm-cache\healthvaultjslib\1.0.0\package.tgz
+16 verbose correctMkdir C:\Users\Ramachandran\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+17 silly cache afterAdd healthvaultjslib@1.0.0
+18 verbose afterAdd C:\Users\Ramachandran\AppData\Roaming\npm-cache\healthvaultjslib\1.0.0\package\package.json not in flight; writing
+19 verbose correctMkdir C:\Users\Ramachandran\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+20 verbose afterAdd C:\Users\Ramachandran\AppData\Roaming\npm-cache\healthvaultjslib\1.0.0\package\package.json written
+21 silly publish { name: 'healthvaultjslib',
+21 silly publish   version: '1.0.0',
+21 silly publish   description: 'Javascript library for Microsoft Healthvault',
+21 silly publish   main: 'index.js',
+21 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/rmchndrng/healthvault-js-library.git' },
+21 silly publish   keywords: [ 'Microsoft', 'Healthvault', 'javascript', 'library' ],
+21 silly publish   author: { name: 'Ramachandran G' },
+21 silly publish   license: 'ISC',
+21 silly publish   bugs: { url: 'https://github.com/rmchndrng/healthvault-js-library/issues' },
+21 silly publish   homepage: 'https://github.com/rmchndrng/healthvault-js-library#readme',
+21 silly publish   readme: '# healthvault-js-library\r\nJavascript library for Healthvault. \r\n\r\nWork is in progress. The SDK will be the simplified javascript/typescrip tversion of the C# sdk/Java SDK.\r\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: 'da03ec9b099949c245f79e432367b350e5ee8569',
+21 silly publish   _id: 'healthvaultjslib@1.0.0',
+21 silly publish   _shasum: '4ad7ced750b9a28368fd3a9629af660483437cd8',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name healthvaultjslib
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'healthvaultjslib',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   escapedName: 'healthvaultjslib',
+26 silly mapToRegistry   name: 'healthvaultjslib',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/healthvaultjslib
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading C:\Users\Ramachandran\AppData\Roaming\npm-cache\healthvaultjslib\1.0.0\package.tgz
+30 verbose request uri https://registry.npmjs.org/healthvaultjslib
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 9:48:13 PM
+33 verbose request using bearer token for auth
+34 verbose request id 933034081daf4484
+35 http request PUT https://registry.npmjs.org/healthvaultjslib
+36 http 403 https://registry.npmjs.org/healthvaultjslib
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '95',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Thu, 15 Sep 2016 16:18:18 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-sin6922-SIN',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1473956297.527982,VS0,VE914',
+37 verbose headers   vary: 'Accept-Encoding' }
+38 verbose request invalidating C:\Users\Ramachandran\AppData\Roaming\npm-cache\registry.npmjs.org\healthvaultjslib on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: "You cannot publish over the previously published version 1.0.0." : healthvaultjslib
+40 verbose stack     at makeError (C:\Users\Ramachandran\AppData\Roaming\npm\node_modules\npm\node_modules\npm-registry-client\lib\request.js:264:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (C:\Users\Ramachandran\AppData\Roaming\npm\node_modules\npm\node_modules\npm-registry-client\lib\request.js:252:14)
+40 verbose stack     at Request._callback (C:\Users\Ramachandran\AppData\Roaming\npm\node_modules\npm\node_modules\npm-registry-client\lib\request.js:172:14)
+40 verbose stack     at Request.self.callback (C:\Users\Ramachandran\AppData\Roaming\npm\node_modules\npm\node_modules\request\request.js:200:22)
+40 verbose stack     at emitTwo (events.js:100:13)
+40 verbose stack     at Request.emit (events.js:185:7)
+40 verbose stack     at Request.<anonymous> (C:\Users\Ramachandran\AppData\Roaming\npm\node_modules\npm\node_modules\request\request.js:1067:10)
+40 verbose stack     at emitOne (events.js:95:20)
+40 verbose stack     at Request.emit (events.js:182:7)
+40 verbose stack     at IncomingMessage.<anonymous> (C:\Users\Ramachandran\AppData\Roaming\npm\node_modules\npm\node_modules\request\request.js:988:12)
+41 verbose statusCode 403
+42 verbose pkgid healthvaultjslib
+43 verbose cwd e:\TrainingLab\Github\healthvault-js-library
+44 error Windows_NT 10.0.10586
+45 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\Ramachandran\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+46 error node v5.10.1
+47 error npm  v3.10.6
+48 error code E403
+49 error "You cannot publish over the previously published version 1.0.0." : healthvaultjslib
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]
